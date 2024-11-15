@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Encryption and Decryption Tool</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+<body>
+    <div class="container">
+        <h1>Caesar Cipher - File Encryption and Decryption</h1>
+        <form id="fileForm" method="post">
+            <label for="file" >Choose a file:</label>
+            <input type="file" id="file" name="file" required>
+            
+            <label for="key">Enter encryption key (number):</label>
+            <input type="number" placeholder="Key" id="key" name="key" required>
+            
+            <label for="mode">Select mode:</label>
+            <select id="mode" name="mode">
+                <option value="encrypt">Encrypt</option>
+                <option value="decrypt">Decrypt</option>
+            </select>
+            
+            <button type="button" onclick="processFile()">Submit</button>
+        </form>
+        <p id="result"></p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
