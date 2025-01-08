@@ -43,6 +43,9 @@ input, select, button {
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
+    color: white;
+}
+.keycol{
     color: black;
 }
 select{
