@@ -24,8 +24,12 @@ function processFile() {
     formData.append('key', key);
     formData.append('mode', mode);
     
-    // Send file to Python backend (Flask or FastAPI)
-    fetch('http://127.0.0.1:5000/process', {
+    const exten = file.name.split('.').pop().toLowerCase();
+    if(exten==='txt' || exten === 'pdf'){
+
+        
+        // Send file to Python backend (Flask or FastAPI)
+        fetch('http://127.0.0.1:5000/process', {
         method: 'POST',
         body: formData
     })
@@ -34,7 +38,16 @@ function processFile() {
         // Create a link to download the processed file
         const downloadLink = document.createElement('a');
         downloadLink.href = URL.createObjectURL(blob);
-        downloadLink.download = mode + "_output.pdf";  // Set the file name
+
+        
+        const extension = file.name.split('.').pop().toLowerCase();
+        
+        if (extension === 'txt') {
+            downloadLink.download = "output.txt";  // Set the file name for text files
+        } else if (extension === 'pdf') {
+            downloadLink.download = "output.pdf";  // Set the file name for PDF files
+        }
+        // downloadLink.download = mode + "_output.pdf";  // Set the file name
         downloadLink.click();
         resultDisplay.textContent = `${mode.charAt(0).toUpperCase() + mode.slice(1)} operation completed!`;
     })
@@ -42,4 +55,8 @@ function processFile() {
         console.error(error);
         resultDisplay.textContent = "An error occurred!";
     });
+    }else{
+        resultDisplay.textContent = "Invalid File Format";
+        
+    }
 }
